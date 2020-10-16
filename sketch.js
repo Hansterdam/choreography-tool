@@ -11,20 +11,22 @@ let checkboxMenu = [20, 300, 20];
 let downloadMenu = [20, 730];
 
 let modeSelector;
+let player;
 
-let modeRadio;
+let framesPerSecond = 30;
 
 function setup() {
   createCanvas(1400, 750);
   angleMode(DEGREES);
   rectMode(RADIUS);
-  frameRate(30);
+  frameRate(framesPerSecond);
 
   angleInput = new AngleInput();
   timeInput = new TimeInput();
   menu = new Menu();
   timeScale = new TimeScale();
   modeSelector = new ModeSelector();
+  player = new Player();
 
   craneCollection = new CraneCollection();
   craneCollection.init();
@@ -46,14 +48,17 @@ function draw() {
   craneCollection.draw();
   stepPrinter.print();
   timeScale.draw();
+  player.draw();
 }
 
 function mousePressed() {
-  let craneHovered = craneCollection.mouseHover();
-  if (craneHovered !== false) {
-    pressed = true;
-    primary = craneHovered;
-    craneCollection.setSelectedToPrimary();
+  if (modeSelector.isInput()) {
+    let craneHovered = craneCollection.mouseHover();
+    if (craneHovered !== false) {
+      pressed = true;
+      primary = craneHovered;
+      craneCollection.setSelectedToPrimary();
+    }
   }
 }
 

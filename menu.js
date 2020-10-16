@@ -83,10 +83,12 @@ disableMenuButtons = function () {
     menu.downloadMenuButton.removeAttribute("disabled");
     menu.deleteButton.removeAttribute("disabled");
     menu.resetMenuButton.removeAttribute("disabled");
+    modeSelector.radio.option("replay mode");
   } else {
     menu.downloadMenuButton.attribute("disabled", true);
     menu.deleteButton.attribute("disabled", true);
     menu.resetMenuButton.attribute("disabled", true);
+    modeSelector.radio.remove("replay mode");
   }
 };
 p5.prototype.registerMethod("post", disableMenuButtons);

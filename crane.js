@@ -8,7 +8,7 @@ function Crane() {
 
   this.steps;
 
-  this.lengthRadius = 50;
+  this.lengthRadius = 70;
   this.widthRadius = 5;
   this.offSet = 20;
 
@@ -81,11 +81,9 @@ function Crane() {
   };
 
   this.mouseHover = function () {
-    return (
-      dist(mouseX, mouseY, this.xBack(), this.yBack()) +
-        dist(mouseX, mouseY, this.xFront(), this.yFront()) <
-      102
-    );
+    let distBack = dist(mouseX, mouseY, this.xBack(), this.yBack());
+    let distFront = dist(mouseX, mouseY, this.xFront(), this.yFront());
+    return distBack + distFront < 2 * this.lengthRadius + 3;
   };
 
   this.updateAngleDiff = function () {
@@ -182,7 +180,7 @@ function Crane() {
     translate(this.x, this.y);
     push();
     rotate(this.currentAngle());
-    if (modeSelector.isInput() && pressed && isPrimary) {
+    if (pressed && isPrimary) {
       fill(this.colorPrimary);
     } else if (this.selected) {
       fill(this.colorSelected);
@@ -204,7 +202,7 @@ function Crane() {
     rect(0, 0, 2, 2);
     pop();
     fill(255, 0, 0);
-    if (!modeSelector.isInput() || !pressed) {
+    if (!pressed) {
       text(this.index + 1, -20, -20);
     }
     pop();

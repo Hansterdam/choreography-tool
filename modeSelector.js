@@ -22,6 +22,7 @@ function modeSelected() {
   if (modeSelector.isInput()) {
     craneCollection.setToLastStep();
     timeScale.disable();
+    playing = false;
   } else {
     craneCollection.resetValues();
     timeScale.enable();

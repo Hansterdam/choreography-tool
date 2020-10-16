@@ -12,6 +12,11 @@ function TimeScale() {
   this.slider.attribute("disabled", true);
   this.slider.input(timeScaleChanged);
 
+  this.reset = () => {
+    this.slider.value(0);
+    timeScaleChanged();
+  };
+
   this.setToMaxValue = () => {
     this.slider.value(craneCollection.maxTimeTotal());
   };
@@ -25,7 +30,22 @@ function TimeScale() {
   };
 
   this.draw = () => {
-    this.slider.attribute("max", craneCollection.maxTimeTotal());
+    if (modeSelector.isInput()) {
+      this.slider.attribute("max", craneCollection.maxTimeTotal());
+    }
+    if (playing) {
+      if (this.slider.value() < this.slider.attribute("max")) {
+        let newValue = this.slider.value() + player.msPerFrame();
+        this.slider.value(
+          newValue > this.slider.attribute("max")
+            ? this.slider.attribute("max")
+            : newValue
+        );
+        timeScaleChanged();
+      } else {
+        playing = false;
+      }
+    }
     text(this.slider.attribute("min"), this.x, this.y - 20);
     text(this.slider.attribute("max"), this.width, this.y - 20);
     text(
