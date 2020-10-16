@@ -1,5 +1,5 @@
 function StepPrinter() {
-  this.x = 800;
+  this.x = 900;
   this.y = 20;
   this.xOffSet = 50;
   this.yOffSet = 17;

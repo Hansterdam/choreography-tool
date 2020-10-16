@@ -25,15 +25,14 @@ function TimeInput() {
   this.reset = function () {
     this.slider.value(0);
   };
-
-  this.bindVariable = function (variable) {
-    this.variable = variable;
-  };
 }
 
 timeInputLabel = function () {
+  let showTime = modeSelector.isInput()
+    ? craneCollection.primary().timeDiff
+    : 0;
   text("Time:", xTime, yTime);
-  text(craneCollection.primary().timeDiff, xTime + 45, yTime);
+  text(showTime, xTime + 45, yTime);
 };
 p5.prototype.registerMethod("post", timeInputLabel);
 

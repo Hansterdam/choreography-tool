@@ -2,7 +2,7 @@ let playing = false;
 
 function Player() {
   this.x = 20;
-  this.y = 500;
+  this.y = 520;
 
   this.startButton = createButton("Start");
   this.startButton.position(this.x, this.y);
