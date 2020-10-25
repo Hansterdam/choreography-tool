@@ -1,7 +1,7 @@
 let primary = 0;
 let pressed = false;
 
-let angleInput, timeInput, menu;
+let angleInput, timeInput, speedInput, menu;
 
 let timeScale;
 
@@ -15,6 +15,8 @@ let player;
 
 let framesPerSecond = 30;
 
+let msPerDegree = 130;
+
 function setup() {
   createCanvas(1400, 750);
   angleMode(DEGREES);
@@ -23,6 +25,7 @@ function setup() {
 
   angleInput = new AngleInput();
   timeInput = new TimeInput();
+  speedInput = new SpeedInput();
   menu = new Menu();
   timeScale = new TimeScale();
   modeSelector = new ModeSelector();

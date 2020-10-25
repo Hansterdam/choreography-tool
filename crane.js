@@ -107,7 +107,7 @@ function Crane() {
   };
 
   this.minTimeDiff = function () {
-    return abs(int(this.angleDiff)) * 130;
+    return abs(int(this.angleDiff)) * msPerDegree;
   };
 
   this.currentAngle = function () {
@@ -180,13 +180,16 @@ function Crane() {
     translate(this.x, this.y);
     push();
     rotate(this.currentAngle());
-    if (pressed && isPrimary) {
+    if (!modeSelector.isInput()) {
+      fill(this.color);
+    } else if (pressed && isPrimary) {
       fill(this.colorPrimary);
     } else if (this.selected) {
       fill(this.colorSelected);
     } else {
       fill(this.color);
     }
+
     rect(
       this.lengthRadius - this.offSet,
       0,
